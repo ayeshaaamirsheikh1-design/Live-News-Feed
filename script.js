@@ -15,7 +15,7 @@
 // 1. CONFIG
 // ====================================================
 
-const API_KEY = '0d4d492eaa8f43bfa17174b8a5dbbd0b';
+const API_KEY = 'fd194cc3160f702f7a441d449d4496dc';
 const BASE_URL = 'https://newsapi.org/v2';
 
 
