@@ -7,6 +7,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js"> </script>
+   
+  <header class="header">
+    <h1>📰 Live News Feed</h1>
+    <p>Stay updated with the latest headlines</p>
+  </header>
+
+  <!-- SEARCH BAR -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Search news... (e.g. cricket, AI, India
+      )" 
+    />
+    <button id="searchBtn">Search</button>
+  </div>
+
+  <!-- CATEGORY FILTER BUTTONS -->
+  <div class="categories">
+    <button class="cat-btn active" data-category="general">General</button>
+    <button class="cat-btn" data-category="technology">Technology</button>
+    <button class="cat-btn" data-category="business">Business</button>
+    <button class="cat-btn" data-category="sports">Sports</button>
+    <button class="cat-btn" data-category="health">Health</button>
+    <button class="cat-btn" data-category="science">Science</button>
+  </div>
+
+  <!-- LOADING SPINNER (hidden by default) -->
+  <div id="spinner" class="spinner hidden">
+    <div class="spinner-circle"></div>
+    <p>Loading news...</p>
+  </div>
+
+  <!-- ERROR MESSAGE (hidden by default) -->
+  <div id="errorBox" class="error-box hidden">
+    ⚠️ Could not load news. Please try again later.
+  </div>
+
+  <!-- NEWS CARDS APPEAR HERE -->
+  <div id="newsContainer" class="news-grid"></div>
+
+     <script src="script.js"> </script>
+    
+
+
 </body>
 </html>
