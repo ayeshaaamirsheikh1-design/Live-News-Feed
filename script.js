@@ -16,7 +16,7 @@
 // ====================================================
 
 const API_KEY = 'fd194cc3160f702f7a441d449d4496dc';
-const BASE_URL = 'https://newsapi.org/v2';
+const BASE_URL = 'https://gnews.io/api/v4';
 
 
 // ====================================================
@@ -61,8 +61,7 @@ function showError() {
 async function fetchByCategory(category) {
   // Free plan fix: use /everything instead of /top-headlines
   // because /top-headlines with country= is blocked on free tier
-  const url = `${BASE_URL}/everything?q=${category}&language=en&sortBy=publishedAt&pageSize=12&apiKey=${API_KEY}`;
-
+  const url = `${BASE_URL}/search?q=${category}&lang=en&max=12&token=${API_KEY}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -75,8 +74,7 @@ async function fetchByCategory(category) {
 
 // --- Fetch news by search keyword ---
 async function fetchBySearch(query) {
-  const url = `${BASE_URL}/everything?q=${query}&language=en&sortBy=publishedAt&pageSize=12&apiKey=${API_KEY}`;
-
+  const url = `${BASE_URL}/search?q=${query}&lang=en&max=12&token=${API_KEY}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -107,7 +105,7 @@ function formatDate(dateString) {
 // Builds ONE card's HTML from one article object
 function createCard(article) {
   // Fallback values if API data is missing
-  const image  = article.urlToImage  || 'https://via.placeholder.com/400x200?text=No+Image';
+  const image = article.image || 'https://via.placeholder.com/400x200?text=No+Image';
   const source = article.source?.name || 'Unknown Source';
   const desc   = article.description  || 'No description available.';
   const date   = formatDate(article.publishedAt);
