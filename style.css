@@ -17,6 +17,7 @@ body {
   color: white;
   text-align: center;
   padding: 24px 16px;
+  position: relative; /* keep header positioned for stacking context */
 }
 
 .header h1 {
@@ -30,21 +31,29 @@ body {
 }
 
 /* ===== SEARCH BAR ===== */
+/* Move the search bar to the top-right of the viewport. It becomes fixed so it stays visible when scrolling. */
 .search-container {
+  position: fixed;
+  top: 16px;
+  right: 16px;
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 10px;
-  padding: 20px 16px;
+  padding: 8px;
   background: white;
-  border-bottom: 1px solid #ddd;
+  border-radius: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid #ddd;
+  z-index: 1000;
+  max-width: 420px;
 }
 
 .search-container input {
+  flex: 1;
   width: 100%;
-  max-width: 500px;
   padding: 10px 16px;
   border: 1px solid #ccc;
-  border-radius: 25px;
+  border-radius: 20px;
   font-size: 15px;
   outline: none;
 }
@@ -54,13 +63,13 @@ body {
 }
 
 .search-container button {
-  padding: 10px 22px;
+  padding: 8px 16px;
   background-color: #1a73e8;
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .search-container button:hover {
@@ -242,11 +251,33 @@ body {
 @media (max-width: 768px) {
   .header h1 { font-size: 1.5rem; }
   .news-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .search-container {
+    max-width: 360px;
+    top: 12px;
+    right: 12px;
+  }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
-  .search-container { flex-direction: column; align-items: center; }
+  /* On small screens the search bar becomes part of the flow (static) and full-width */
+  .search-container {
+    position: static;
+    width: 100%;
+    max-width: none;
+    padding: 16px;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    margin-bottom: 12px;
+  }
+
   .search-container input { max-width: 100%; }
+  .search-container button { width: 100%; border-radius: 25px; }
+
   .news-grid { grid-template-columns: 1fr; }
 }
