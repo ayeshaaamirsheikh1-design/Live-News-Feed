@@ -1,34 +1,22 @@
-// ====================================================
-// script.js — Live News Feed
-// All logic in one file:
-// 1. CONFIG        → API key and base URL
-// 2. STATE         → tracks current app state
-// 3. DOM HELPERS   → show/hide spinner and error
-// 4. API FUNCTIONS → fetch data from newsdata.io
-// 5. RENDER        → build and inject news cards
-// 6. EVENT LISTENERS → respond to user actions
-// 7. STARTUP       → runs when page loads
-// ====================================================
 
 
-// ====================================================
+
 // 1. CONFIG
-// ====================================================
+
 
 const API_KEY = 'pub_4f40c93dd860489dba22476fa7aaba85';
 const BASE_URL = 'https://newsdata.io/api/1';
 
 
-// ====================================================
+
 // 2. STATE
-// ====================================================
 
 let currentCategory = 'general';
 
 
-// ====================================================
+
 // 3. DOM HELPERS
-// ====================================================
+
 
 const spinner       = document.getElementById('spinner');
 const errorBox      = document.getElementById('errorBox');
@@ -49,14 +37,14 @@ function showError() {
 }
 
 
-// ====================================================
+
 // 4. API FUNCTIONS
-// newsdata.io uses:
-// /news?apikey=KEY&q=KEYWORD&language=en
-// ====================================================
+
+
+
 
 async function fetchByCategory(category) {
-  // newsdata.io correct URL format
+ 
   const url = `${BASE_URL}/news?apikey=${API_KEY}&q=${category}&language=en`;
 
   const response = await fetch(url);
@@ -67,12 +55,12 @@ async function fetchByCategory(category) {
 
   const data = await response.json();
 
-  // newsdata.io returns data.results (not data.articles)
+  
   return data.results;
 }
 
 async function fetchBySearch(query) {
-  // newsdata.io correct URL format
+  
   const url = `${BASE_URL}/news?apikey=${API_KEY}&q=${query}&language=en`;
 
   const response = await fetch(url);
@@ -83,19 +71,12 @@ async function fetchBySearch(query) {
 
   const data = await response.json();
 
-  // newsdata.io returns data.results (not data.articles)
+ 
   return data.results;
 }
 
 
-// ====================================================
-// 5. RENDER
-// newsdata.io field names are different:
-// image_url instead of image
-// source_name instead of source.name
-// pubDate instead of publishedAt
-// link instead of url
-// ====================================================
+
 
 function formatDate(dateString) {
   if (!dateString) return 'Date unknown';
@@ -143,9 +124,9 @@ function renderArticles(articles) {
 }
 
 
-// ====================================================
+
 // 6. MAIN LOAD FUNCTIONS
-// ====================================================
+
 
 async function loadByCategory(category) {
   currentCategory = category;
@@ -179,9 +160,8 @@ async function loadBySearch(query) {
 }
 
 
-// ====================================================
 // 7. EVENT LISTENERS
-// ====================================================
+
 
 const categoryButtons = document.querySelectorAll('.cat-btn');
 
@@ -210,8 +190,7 @@ document.getElementById('searchInput').addEventListener('keydown', function(even
 });
 
 
-// ====================================================
+
 // 8. STARTUP
-// ====================================================
 
 loadByCategory('general');
